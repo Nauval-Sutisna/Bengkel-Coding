@@ -18,3 +18,4 @@ class Obat extends Model
         return $this->hasMany(detailPeriksa::class, 'id_obat');
     }
 }
+// 
