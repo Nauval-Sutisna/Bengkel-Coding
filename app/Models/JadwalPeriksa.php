@@ -23,3 +23,4 @@ class JadwalPeriksa extends Model
         return $this->hasMany(DaftarPoli::class, 'id_jadwal');
     }
 }
+// 
