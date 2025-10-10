@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use illuminate\Support\Facades\Hash;
+
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
