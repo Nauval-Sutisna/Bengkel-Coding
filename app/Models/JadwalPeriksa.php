@@ -9,7 +9,7 @@ class JadwalPeriksa extends Model
     protected $table = 'jadwal_periksa';
     
     protected $fillable = [
-        'id_daftar',
+        'id_dokter',
         'hari',
         'jam_mulai',
         'jam_selesai'
