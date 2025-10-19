@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ $title ?? 'Login' }}</title>
 
-    {{-- <link rel="stylesheet" href="{{ mix('css/app.css') }}"> --}}
+    {{--
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}"> --}}
     @vite(['resources/js/app.js', 'resources/css/app.css'])
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn137C_pDww5uScbOk="
@@ -21,7 +22,8 @@
 <body class="hold-transition sidebar-mini layout-fixed min-vh-100">
     {{ $slot }}
 
-    {{-- <script src="{{ mix('js/app.js') }}"></script> --}}
+    {{--
+    <script src="{{ mix('js/app.js') }}"></script> --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
         integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
