@@ -9,32 +9,21 @@ use Illuminate\Support\Facades\Hash;
 
 class DokterController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        // Ambil semua user dengan role dokter, sekaligus relasi ke poli
         $dokters = User::where('role', 'dokter')->with('poli')->get();
         return view('admin.dokter.index', compact('dokters'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         $polis = Poli::all();
         return view('admin.dokter.create', compact('polis'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        // ✅ Validasi input
-        $data = $request->validate([
+        $request->validate([
             'nama' => 'required|string|max:255',
             'alamat' => 'required|string',
             'no_ktp' => 'required|string|max:16|unique:users,no_ktp',
@@ -44,40 +33,31 @@ class DokterController extends Controller
             'password' => 'required|string|min:6',
         ]);
 
-        // ✅ Simpan data ke tabel users
         User::create([
-            'nama' => $data['nama'],
-            'alamat' => $data['alamat'],
-            'no_ktp' => $data['no_ktp'],
-            'no_hp' => $data['no_hp'],
-            'id_poli' => $data['id_poli'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'nama' => $request->nama,
+            'alamat' => $request->alamat,
+            'no_ktp' => $request->no_ktp,
+            'no_hp' => $request->no_hp,
+            'id_poli' => $request->id_poli,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
             'role' => 'dokter',
         ]);
 
-        // ✅ Redirect ke halaman index dokter
         return redirect()->route('dokter.index')
             ->with('message', 'Data Dokter berhasil ditambahkan!')
             ->with('type', 'success');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(User $dokter)
     {
         $polis = Poli::all();
         return view('admin.dokter.edit', compact('dokter', 'polis'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, User $dokter)
     {
-        // ✅ Validasi data update
-        $validated = $request->validate([
+        $request->validate([
             'nama' => 'required|string|max:255',
             'alamat' => 'required|string',
             'no_ktp' => 'required|string|max:16|unique:users,no_ktp,' . $dokter->id,
@@ -87,22 +67,19 @@ class DokterController extends Controller
             'password' => 'nullable|string|min:6',
         ]);
 
-        // ✅ Siapkan data update
         $updateData = [
-            'nama' => $validated['nama'],
-            'alamat' => $validated['alamat'],
-            'no_ktp' => $validated['no_ktp'],
-            'no_hp' => $validated['no_hp'],
-            'id_poli' => $validated['id_poli'],
-            'email' => $validated['email'],
+            'nama' => $request->nama,
+            'alamat' => $request->alamat,
+            'no_ktp' => $request->no_ktp,
+            'no_hp' => $request->no_hp,
+            'id_poli' => $request->id_poli,
+            'email' => $request->email,
         ];
 
-        // Update password jika diisi
-        if (!empty($validated['password'])) {
-            $updateData['password'] = Hash::make($validated['password']);
+        if($request->filled('password')) {
+            $updateData['password'] = Hash::make($request->password);
         }
 
-        // ✅ Update data dokter
         $dokter->update($updateData);
 
         return redirect()->route('dokter.index')
@@ -110,9 +87,6 @@ class DokterController extends Controller
             ->with('type', 'success');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(User $dokter)
     {
         $dokter->delete();
