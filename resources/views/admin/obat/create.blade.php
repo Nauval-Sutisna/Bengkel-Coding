@@ -27,10 +27,21 @@
                                 </div>
                             </div>
 
-                            <div class="form-group mb-3">
-                                <label for="harga" class="form-label">Harga <span class="text-danger">*</span></label>
-                                <input type="number" name="harga" id="harga"
-                                    class="form-control" min="0" step="1" required>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group mb-3">
+                                        <label for="harga" class="form-label">Harga <span class="text-danger">*</span></label>
+                                        <input type="number" name="harga" id="harga"
+                                            class="form-control" min="0" step="1" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <div class="form-group mb-3"></div>
+                                        <label for="harga" class="form-label">Stok <span class="text-danger">*</span></label>
+                                        <input type="number" name="stok" id="stok"
+                                            class="form-control" min="0" step="1" value="{{ old('stok', 0) }}" required>
+                                </div>
                             </div>
 
                             <div class="form-group mt-4">

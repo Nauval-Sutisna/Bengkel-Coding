@@ -16,9 +16,9 @@ class Periksa extends Model
     ];
 
     public function daftarPoli(){
-        return $this->belongsTo(User::class, 'id_daftar_poli');
+        return $this->belongsTo(DaftarPoli::class, 'id_daftar_poli');
     }
-    public function detailPeriksa(){
-        return $this->hasMany(User::class, 'id_periksa');
+    public function detailPeriksas(){
+        return $this->hasMany(DetailPeriksa::class, 'id_periksa');
     }
 }
