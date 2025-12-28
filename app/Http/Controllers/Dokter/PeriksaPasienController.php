@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\DB;
 
 class PeriksaPasienController extends Controller
 {
-    // ✅ HALAMAN LIST PASIEN
     public function index()
     {
         $dokterId = Auth::id();
@@ -28,14 +27,12 @@ class PeriksaPasienController extends Controller
         return view('dokter.periksa-pasien.index', compact('daftarPasien'));
     }
 
-    // ✅ HALAMAN FORM PERIKSA
     public function create($id)
     {
         $obats = Obat::all();
         return view('dokter.periksa-pasien.create', compact('obats', 'id'));
     }
 
-    // ✅ SIMPAN DATA PERIKSA
     public function store(Request $request)
     {
         $request->validate([
